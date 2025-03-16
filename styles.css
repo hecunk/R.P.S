@@ -2,9 +2,14 @@ h1 {
     text-align: center;
 }
 
+body {
+    background-color: rgb(36, 150, 179);
+}
+
 .mybuttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 50px;
     margin-bottom: 20px;
 }
 
