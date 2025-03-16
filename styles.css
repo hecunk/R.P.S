@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+}
+
+.mybuttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.rock {
+    background: url(images/rock.jpg);
+}
+
+.paper {
+    background: url(images/paper.jpg);
+}
+
+.scissors {
+    background: url(images/scissors.jpg);
+}
+
+.rock, .paper, .scissors {
+    background-size: 300px 300px;
+    width: 300px;
+    height: 300px;
+}

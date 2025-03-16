@@ -11,37 +11,58 @@ function getComputerChoice() {
     };
 };
 
-function getUserChoice() {
-    return prompt("R? P? S?").toLowerCase();
-};
-
 let humanScore = 0;
 let computerScore = 0;
+
+const winnerText = document.createElement("div");
+
+const mybuttons = document.querySelector(".buttontext");
+const body = document.querySelector("body");
 
 function playRound(humanChoice, computerChoice) {
     if ((humanChoice === "r" && computerChoice === "s") || (humanChoice === "s" && computerChoice === "p") || (humanChoice === "p" && computerChoice === "r")){
         humanScore++;
-        console.log(`Human won! ${humanChoice} beats ${computerChoice}`);
+        winnerText.textContent = `Human won! ${humanChoice} beats ${computerChoice}
+        the score is: ${humanScore} vs ${computerScore}`;
     }
     else if (humanChoice === computerChoice) {
-        console.log(`It's a tie! ${humanChoice} is equal to ${computerChoice}`);
+        winnerText.textContent = `It's a tie! ${humanChoice} is equal to ${computerChoice}
+        the score is: ${humanScore} vs ${computerScore}`;
     }
     else {
         computerScore++;
-        console.log(`Computer won! ${computerChoice} beats ${humanChoice}`);
+        winnerText.textContent = `Computer won! ${computerChoice} beats ${humanChoice}
+        the score is: ${humanScore} vs ${computerScore}`;
+    };
+
+    if (humanScore === 5) {
+        alert('Human won GAME! REFRESH TO PLAY AGAIN');
+        mybuttons.remove();
+        const refr = document.createElement("h1");
+        refr.textContent = "REFRESH TO PLAY AGAIN"
+        body.appendChild(refr);
+    }
+    
+    else if (computerScore === 5) {
+        alert('Computer won GAME! REFRESH TO PLAY AGAIN');
+        mybuttons.remove();
+        const refr = document.createElement("h1");
+        refr.textContent = "REFRESH TO PLAY AGAIN"
+        body.appendChild(refr);
     };
 };
 
-for (let i = 0; i < 5; i++){
-    playRound(getUserChoice(), getComputerChoice());
-};
+const rbtn = document.querySelector(".rock");
+rbtn.addEventListener("click", () => {playRound("r", getComputerChoice());});
 
-if (humanScore > computerScore) {
-    console.log('Human won GAME!')
-}
-else if (humanScore === computerScore) {
-    console.log("IT'S A TIE!")
-}
-else {
-    console.log('Computer won GAME!')
-};
+const pbtn = document.querySelector(".paper");
+pbtn.addEventListener("click", () => {playRound("p", getComputerChoice());});
+
+const sbtn = document.querySelector(".scissors");
+sbtn.addEventListener("click", () => {playRound("s", getComputerChoice());});
+
+const buttontext = document.querySelector(".buttontext");
+winnerText.style.textAlign = "center";
+winnerText.style.fontSize = "30px";
+winnerText.style.fontWeight = "500";
+buttontext.appendChild(winnerText);
